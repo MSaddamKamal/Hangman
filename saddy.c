@@ -320,7 +320,24 @@ int play(void){
 
 	char wordOne[256] = "";
     //Pick a 'random' line
-    int randInt = (rand()%66);
+
+    //counting number of lines in a file to create a random int which is in max range of it.
+
+     FILE *fp = fopen(path,"r");
+    int ch;
+    int lineCount=0;
+    do
+    {
+        ch = fgetc(fp);
+        if(ch == '\n') lineCount++;   
+    } while( ch != EOF );// EOF means end of file    
+
+    fclose(file);
+
+    
+
+    // create random int with in the range  from 0 to linecount
+    int randInt = (rand()%lineCount++);
 
     FILE *file = fopen(path, "r");
 
